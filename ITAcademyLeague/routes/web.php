@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommanderController;
+use App\Http\Controllers\DuelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,42 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "Welcome to the League Homepage, it will be good to see the Commanders Ranking table here";
-});
+Route::get('/', HomeController::class);
 
-Route::get('commanders', function () {
-    return "Commanders Index";
-});
+Route::get('commanders', [CommanderController::class, 'commanderIndex']);
 
-Route::get('commanders/createCommander', function () {
-    return "On this webpage we can create a new commander";
-});
+Route::get('commanders/createCommander', [CommanderController::class, 'createCommander']);
 
-Route::get('commanders/editCommander', function () {
-    return "On this webpage we can create a new commander";
-});
+Route::get('commanders/updateCommander', [CommanderController::class, 'updateCommander']);
 
-Route::get('commanders/{commander}', function ($commander) {
-    return "Details webpage for: $commander";
-});
+Route::get('commanders/{commander}', [CommanderController::class, 'recallCommander']);
 
-Route::get('duels', function () {
-    return "Duels Index";
-});
+Route::get('duels', [DuelController::class, 'duelIndex']);
 
-Route::get('duels/createDuels', function () {
-    return "On this webpage we can create a new duel";
-});
+Route::get('duels/createDuel', [DuelController::class, 'createDuel']);
 
-Route::get('duels/editDuels', function () {
-    return "On this webpage we can create a new duel";
-});
+Route::get('duels/updateDuel', [DuelController::class, 'updateDuel']);
 
-Route::get('duels/{duel}', function ($duel) {
-    return "Details webpage for: $duel";
-
-});
-
-
-
+Route::get('duels/{duel}', [DuelController::class, 'recallDuel']);

@@ -14,5 +14,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "Welcome to the League Homepage, it will be good to see the Commanders Ranking table here";
 });
+
+Route::get('commanders', function () {
+    return "Commanders Index";
+});
+
+Route::get('commanders/createCommander', function () {
+    return "On this webpage we can create a new commander";
+});
+
+Route::get('commanders/editCommander', function () {
+    return "On this webpage we can create a new commander";
+});
+
+Route::get('commanders/{commander}', function ($commander) {
+    return "Details webpage for: $commander";
+});
+
+Route::get('duels', function () {
+    return "Duels Index";
+});
+
+Route::get('duels/createDuels', function () {
+    return "On this webpage we can create a new duel";
+});
+
+Route::get('duels/editDuels', function () {
+    return "On this webpage we can create a new duel";
+});
+
+Route::get('duels/{duel}', function ($duel) {
+    return "Details webpage for: $duel";
+
+});
+
+
+

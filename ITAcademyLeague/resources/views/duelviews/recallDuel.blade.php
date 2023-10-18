@@ -4,6 +4,6 @@
 
 @section('content')
 
-     <h1>Details webpage for duel: <?php echo $duel; ?></h1>
+     <h1>Details webpage for duel: {{$duel}}</h1>
      
 @endsection

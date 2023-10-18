@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class DuelController extends Controller
 {
-    public function duelIndex () {
+    public function duelsIndex () {
         return "Duels Index";
     }
 

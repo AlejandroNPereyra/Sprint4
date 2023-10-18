@@ -6,20 +6,20 @@ use Illuminate\Http\Request;
 
 class CommanderController extends Controller
 {
-    public function commanderIndex () {
-        return "Commanders Index";
+    public function commandersIndex () {
+        return view ('commanderViews.commandersIndex');
     }
 
     public function createCommander () {
-        return "On this webpage we can create a new commander";
+        return view ('commanderViews.createCommander');
     }
 
     public function recallCommander ($commander) {
-        return "Details webpage for commander: $commander";
+        return view ('commanderViews.recallCommander', ['commander' => $commander]);
     }
 
     public function updateCommander () {
-        return "On this webpage we can update a commander";
+        return view ('commanderViews.updateCommander');
     }
 
     public function deleteCommander () {

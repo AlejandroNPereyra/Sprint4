@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function __invoke () {
 
-        return "Welcome to the League Homepage, it will be good to see the Commanders Ranking table here";
+        return view('home');
 
     }
    

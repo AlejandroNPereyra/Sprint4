@@ -20,7 +20,7 @@ Route::get('/', HomeController::class);
 
 Route::controller(CommanderController::class)->group(function() {
 
-    Route::get('commanders', 'commanderIndex');
+    Route::get('commanders', 'commandersIndex');
     Route::get('commanders/createCommander', 'createCommander');
     Route::get('commanders/updateCommander', 'updateCommander');
     Route::get('commanders/{commander}', 'recallCommander');
@@ -29,7 +29,7 @@ Route::controller(CommanderController::class)->group(function() {
 
 Route::controller(DuelController::class)->group(function() {
 
-    Route::get('duels', 'duelIndex');
+    Route::get('duels', 'duelsIndex');
     Route::get('duels/createDuel', 'createDuel');
     Route::get('duels/updateDuel', 'updateDuel');
     Route::get('duels/{duel}', 'recallDuel');

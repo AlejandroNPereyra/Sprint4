@@ -7,19 +7,19 @@ use Illuminate\Http\Request;
 class DuelController extends Controller
 {
     public function duelsIndex () {
-        return "Duels Index";
+        return view ('duelViews.duelsIndex');
     }
 
     public function createDuel () {
-        return "On this webpage we can create a new duel";
+        return view ('duelViews.createDuel');
     }
 
     public function recallDuel ($duel) {
-        return "Details webpage for duel: $duel";
+        return view ('duelViews.recallDuel', ['duel' => $duel]);
     }
 
     public function updateDuel () {
-        return "On this webpage we can update a duel";
+        return view ('duelViews.updateDuel');
     }
 
     public function deleteDuel () {

@@ -15,7 +15,7 @@ class CommanderController extends Controller
     }
 
     public function recallCommander ($commander) {
-        return view ('commanderViews.recallCommander', ['commander' => $commander]);
+        return view ('commanderViews.recallCommander', compact('commander'));
     }
 
     public function updateCommander () {

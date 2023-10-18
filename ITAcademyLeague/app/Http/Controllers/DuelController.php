@@ -15,7 +15,7 @@ class DuelController extends Controller
     }
 
     public function recallDuel ($duel) {
-        return view ('duelViews.recallDuel', ['duel' => $duel]);
+        return view ('duelViews.recallDuel', compact('duel'));
     }
 
     public function updateDuel () {

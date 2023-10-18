@@ -15,7 +15,7 @@ class CommanderController extends Controller
     }
 
     public function recallCommander ($commander) {
-        return "Details webpage for: $commander";
+        return "Details webpage for commander: $commander";
     }
 
     public function updateCommander () {

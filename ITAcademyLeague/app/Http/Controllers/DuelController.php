@@ -15,7 +15,7 @@ class DuelController extends Controller
     }
 
     public function recallDuel ($duel) {
-        return "Details webpage for: $duel";
+        return "Details webpage for duel: $duel";
     }
 
     public function updateDuel () {

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Commander;
 use Illuminate\Database\Seeder;
 
 class CommanderSeeder extends Seeder
@@ -12,6 +12,6 @@ class CommanderSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Commander::factory(20)->create();
     }
 }

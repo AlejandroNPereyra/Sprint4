@@ -16,10 +16,10 @@ return new class extends Migration
             $table->id('commander_ID');
             $table->string('commander_name')->unique();
             $table->string('description');
-            $table->integer('mana');
+            $table->unsignedInteger('mana');
             $table->string('email')->unique();
-            $table->integer('duels_won');
-            $table->integer('duels_lost');
+            $table->unsignedInteger('duels_won');
+            $table->unsignedInteger('duels_lost');
             $table->timestamps();
 
         });

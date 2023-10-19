@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreign('loser_ID')->references('commander_ID')->on('Commanders');
 
             // Ensure that winner_ID and loser_ID are not the same
-            $table->unique(['winner_ID', 'loser_ID']);
+            // $table->unique(['winner_ID', 'loser_ID']);
 
         });
     }

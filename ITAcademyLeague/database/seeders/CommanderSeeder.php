@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Commander;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CommanderSeeder extends Seeder
 {

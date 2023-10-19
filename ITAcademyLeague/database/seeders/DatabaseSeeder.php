@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Commander;
-use App\Models\Duel;
-
 
 class DatabaseSeeder extends Seeder
 {

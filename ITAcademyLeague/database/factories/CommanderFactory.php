@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Commander>
  */
@@ -21,7 +22,7 @@ class CommanderFactory extends Factory
 
             'commander_name' => $this->faker->name,
             'description' => $this->faker->text,
-            'mana' => $this->faker->numberBetween(0, 1000),
+            'mana' => $this->faker->numberBetween(1, 1000),
             'email' => $this->faker->unique()->safeEmail,
             'duels_won' => $this->faker->numberBetween(0, 1000),
             'duels_lost' => $this->faker->numberBetween(0, 1000)

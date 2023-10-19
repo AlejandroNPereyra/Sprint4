@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Duel;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DuelSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class DuelSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Duel::factory(100)->create();
     }
 }

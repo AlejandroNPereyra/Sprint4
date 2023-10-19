@@ -4,6 +4,6 @@
 
 @section('content')
 
-     <h1>Details webpage for duel: {{$duel}}</h1>
+     <h1 class="text-2xl font-mtg-title text-white text-center">Details webpage for duel: {{$duel}}</h1>
      
 @endsection

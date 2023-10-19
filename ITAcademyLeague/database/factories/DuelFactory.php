@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Commander;
+use App\Providers\FantasyPlaceProvider;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Duel>
@@ -19,10 +20,12 @@ class DuelFactory extends Factory
 
     public function definition(): array
     {
+        $this->faker->addProvider(new FantasyPlaceProvider($this->faker));
+
         return [
 
             'date' => $this->faker->dateTimeBetween('2020-01-01', 'now'),
-            'celebrated_at' => $this->faker->sentence,
+            'celebrated_at' => $this->faker->fantasyPlace(),
 
             'winner_ID' => function () {
 

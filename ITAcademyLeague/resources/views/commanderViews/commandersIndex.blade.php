@@ -20,7 +20,7 @@
           <tbody class="bg-mtg-bg text-white text-center">
                @foreach ($commandersIndex as $commander)
                     <tr>
-                         <td><a class="hover-link" href="{{ route('recall.commander', $commander->commander_ID) }}">{{ $commander->commander_name }}</a></td>
+                         <td><a href="{{ route('recall.commander', $commander->commander_ID) }}" style="color: #007bff; transition: color 0.3s; text-decoration: none;" onmouseover="this.style.color='#ff9900'" onmouseout="this.style.color='#007bff'">{{ $commander->commander_name }}</a></td>
                          <td>{{ $commander->description }}</td>
                          <td>{{ $commander->mana }}</td>
                          <td>{{ $commander->email }}</td>

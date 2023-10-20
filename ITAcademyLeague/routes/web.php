@@ -16,7 +16,7 @@ use App\Http\Controllers\DuelController;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 Route::controller(CommanderController::class)->group(function() {
 

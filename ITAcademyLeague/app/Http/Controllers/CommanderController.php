@@ -9,7 +9,7 @@ class CommanderController extends Controller
 {
     public function commandersIndex () {
 
-        $commandersIndex = Commander::paginate();
+        $commandersIndex = Commander::paginate(10);
 
         return view ('commanderViews.commandersIndex', compact('commandersIndex'));
 

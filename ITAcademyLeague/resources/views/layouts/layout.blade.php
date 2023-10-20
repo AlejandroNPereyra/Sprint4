@@ -10,7 +10,7 @@
 
     <!-- Include Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}"> --}}
 
     <style>
 
@@ -38,7 +38,11 @@
 <body class="bg-mtg-bg">
 
     <header class="bg-mtg-card p-4 text-center text-mtg-text">
-        <h1 class="text-2xl font-mtg-title">MTR TOURNAMENT</h1>
+        <h1 class="text-2xl font-mtg-title"><a href="{{ route('home') }}" class="text-white hover:text-yellow-500 mx-2" style="transition: color 0.3s;">MANA: THE RABBLEMENT<br>TOURNAMENT</a></h1>
+        <nav class="mt-4">
+            <a href="{{ route('commanders.index') }}" class="text-white hover:text-red-500 mx-2" style="transition: color 0.3s;">COMMANDERS</a>
+            <a href="{{ route('duels.index') }}" class="text-white hover:text-red-500 mx-2" style="transition: color 0.3s;">DUELS</a>
+        </nav>
     </header>
 
     @yield('content')

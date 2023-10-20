@@ -23,7 +23,7 @@ class CommanderController extends Controller
 
         $commander = Commander::find ($commander_ID);
 
-    return view ('commanderViews.recallCommander', compact('commander'));
+        return view ('commanderViews.recallCommander', compact('commander'));
 
     }
 

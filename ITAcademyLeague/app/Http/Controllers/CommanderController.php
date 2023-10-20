@@ -3,19 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Commander;
 
 class CommanderController extends Controller
 {
     public function commandersIndex () {
-        return view ('commanderViews.commandersIndex');
+
+        $commandersIndex = Commander::paginate();
+
+        return view ('commanderViews.commandersIndex', compact('commandersIndex'));
+
     }
 
     public function createCommander () {
         return view ('commanderViews.createCommander');
     }
 
-    public function recallCommander ($commander) {
-        return view ('commanderViews.recallCommander', compact('commander'));
+    public function recallCommander ($commander_ID) {
+
+        $commander = Commander::find ($commander_ID);
+
+    return view ('commanderViews.recallCommander', compact('commander'));
+
     }
 
     public function updateCommander () {

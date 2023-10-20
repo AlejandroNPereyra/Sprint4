@@ -1,0 +1,8 @@
+.hover-link {
+    color: #007bff; /* Change this color to your desired hover color */
+    transition: color 0.3s; /* Add a smooth color transition effect */
+}
+
+.hover-link:hover {
+    color: #ff9900; /* Change this color to your desired hover color */
+}

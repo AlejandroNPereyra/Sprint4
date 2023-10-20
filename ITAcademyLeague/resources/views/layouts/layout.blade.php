@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -9,8 +10,10 @@
 
     <!-- Include Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <style>
+
         /* Custom MTG Styles */
         .bg-mtg-bg {
             background: #1f262a;
@@ -27,9 +30,11 @@
         .text-mtg-text {
             color: #f9f9f9;
         }
+        
     </style>
 
 </head>
+
 <body class="bg-mtg-bg">
 
     <header class="bg-mtg-card p-4 text-center text-mtg-text">
@@ -39,8 +44,9 @@
     @yield('content')
 
     <footer class="bg-mtg-card p-4 text-center text-mtg-text">
-        &copy; 2023 MANA the Rabblement
+        &copy; 2023 MANA: The Rabblement
     </footer>
 
 </body>
+
 </html>

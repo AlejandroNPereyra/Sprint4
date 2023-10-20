@@ -13,6 +13,6 @@ class DuelSeeder extends Seeder
      */
     public function run(): void
     {
-        Duel::factory(100)->create();
+        Duel::factory(200)->create();
     }
 }

@@ -16,7 +16,23 @@ class CommanderController extends Controller
     }
 
     public function createCommander () {
+
         return view ('commanderViews.createCommander');
+
+    }
+
+    public function storeCommander (Request $request) {
+
+        $newCommander = new Commander();
+
+        $newCommander->commander_name = $request->commander_name;
+        $newCommander->description = $request->description;
+        $newCommander->email = $request->email;
+
+        $newCommander->save();
+
+        return redirect()->route('commanders.index');
+
     }
 
     public function recallCommander ($commander_ID) {

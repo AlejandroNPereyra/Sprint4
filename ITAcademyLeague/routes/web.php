@@ -22,7 +22,7 @@ Route::controller(CommanderController::class)->group(function() {
 
     Route::get('commanders', 'commandersIndex')->name('commanders.index');
     Route::get('commanders/createCommander', 'createCommander')->name('create.commander');
-    Route::get('commanders/updateCommander', 'updateCommander')->name('update.commander');
+    Route::get('commanders/{commander}/updateCommander', 'updateCommander')->name('update.commander');
     Route::get('commanders/{commander_ID}', 'recallCommander')->name('recall.commander');
     Route::delete('commanders/{commander_ID}', 'destroyCommander')->name('delete.commander');
     Route::post('commanders', 'storeCommander')->name('store.commander');

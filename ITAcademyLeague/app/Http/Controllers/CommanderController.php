@@ -51,8 +51,9 @@ class CommanderController extends Controller
 
     }
 
-    public function updateCommander () {
-        return view ('commanderViews.updateCommander');
+    public function updateCommander (Commander $commander) {
+
+        return view ('commanderViews.updateCommander', compact('commander'));
     }
 
     public function destroyCommander($commander_ID) {

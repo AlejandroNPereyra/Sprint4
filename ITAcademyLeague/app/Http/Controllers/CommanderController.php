@@ -32,6 +32,7 @@ class CommanderController extends Controller
     }
 
     public function deleteCommander () {
+        
         return "This should be a controller to delete a commander";
     }
 

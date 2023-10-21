@@ -58,7 +58,7 @@
                               <form action="{{ route('delete.commander', $commander->commander_ID) }}" method="POST">
                                    @csrf
                                    @method('DELETE')
-                                   <button type="submit" class="btn btn-danger hover:text-yellow-500 transition duration-300">
+                                   <button type="button" class="btn btn-danger hover:text-yellow-500 transition duration-300" onclick="confirmDelete('{{ $commander->commander_name }}')">
                                        <i class="fas fa-trash"></i>
                                    </button>
                                </form>
@@ -74,5 +74,19 @@
      <div class="font-mtg-title text-white text-center">
           {{ $commandersIndex->links() }}
      </div>
+
+     <script>
+
+          function confirmDelete(commanderName) {
+
+              if (confirm(`Are you sure you want to delete ${commanderName}? This will also delete all associated duels.`)) {
+                  // If the user confirms, submit the form
+                  document.querySelector('form').submit();
+
+              }
+              
+          }
+
+      </script>
 
 @endsection

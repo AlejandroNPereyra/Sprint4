@@ -7,22 +7,6 @@
 <div class="container mx-auto mt-10 p-6 bg-mtg-card rounded-lg border-mtg-border">
     <h1 class="text-2xl font-mtg-title mb-4 text-mtg-text">New Commander Form</h1>
 
-    @if(session('success'))
-
-        <div class="bg-mtg-bg text-white text-center alert alert-success" style="background-color: red;">
-            {{ session('success') }}
-        </div>
-
-    @endif
-
-    @if(session('error'))
-
-        <div class="bg-mtg-bg text-white text-center alert alert-danger" style="background-color: red;">
-            {{ session('error') }}
-        </div>
-
-    @endif
-
     <form method="POST" action="{{ route('store.commander') }}" class="mt-4">
         @csrf
 
@@ -31,7 +15,7 @@
             input[type="text"], input[type="email"] {
                 color: #000;
             }
-            
+
         </style>
 
         <div class="mb-4">

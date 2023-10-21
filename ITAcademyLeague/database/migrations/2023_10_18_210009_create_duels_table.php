@@ -22,8 +22,8 @@ return new class extends Migration
             $table->integer('loser_mana_used');
             $table->timestamps();
 
-            $table->foreign('winner_ID')->references('commander_ID')->on('Commanders');
-            $table->foreign('loser_ID')->references('commander_ID')->on('Commanders');
+            $table->foreign('winner_ID')->references('commander_ID')->on('Commanders')->cascadeOnDelete();
+            $table->foreign('loser_ID')->references('commander_ID')->on('Commanders')->cascadeOnDelete();
 
             // Ensure that winner_ID and loser_ID are not the same
             // $table->unique(['winner_ID', 'loser_ID']);

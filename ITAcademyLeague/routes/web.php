@@ -16,23 +16,24 @@ use App\Http\Controllers\DuelController;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 Route::controller(CommanderController::class)->group(function() {
 
-    Route::get('commanders', 'commandersIndex');
-    Route::get('commanders/createCommander', 'createCommander');
-    Route::get('commanders/updateCommander', 'updateCommander');
-    Route::get('commanders/{commander}', 'recallCommander');
+    Route::get('commanders', 'commandersIndex')->name('commanders.index');
+    Route::get('commanders/createCommander', 'createCommander')->name('create.commander');
+    Route::get('commanders/updateCommander', 'updateCommander')->name('update.commander');
+    Route::get('commanders/{commander_ID}', 'recallCommander')->name('recall.commander');
+    Route::delete('commanders/{commander_ID}', 'destroyCommander')->name('delete.commander');
 
 });
 
 Route::controller(DuelController::class)->group(function() {
 
-    Route::get('duels', 'duelsIndex');
-    Route::get('duels/createDuel', 'createDuel');
-    Route::get('duels/updateDuel', 'updateDuel');
-    Route::get('duels/{duel}', 'recallDuel');
+    Route::get('duels', 'duelsIndex')->name('duels.index');
+    Route::get('duels/createDuel', 'createDuel')->name('create.duel');
+    Route::get('duels/updateDuel', 'updateDuel')->name('update.duel');
+    Route::get('duels/{duel}', 'recallDuel')->name('recall.duel');
 
 });
 

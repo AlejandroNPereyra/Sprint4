@@ -31,7 +31,15 @@ class CommanderController extends Controller
 
         $newCommander->save();
 
-        return redirect()->route('commanders.index');
+        if ($newCommander) {
+
+            $newCommander->save();
+            
+            return redirect()->route('commanders.index')->with('success', 'Commander registered successfully!');
+
+        }
+    
+        return redirect()->route('commanders.index')->with('error', 'Not enough data to summon a new Commander');
 
     }
 

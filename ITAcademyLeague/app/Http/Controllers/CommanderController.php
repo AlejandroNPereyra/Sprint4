@@ -31,9 +31,19 @@ class CommanderController extends Controller
         return view ('commanderViews.updateCommander');
     }
 
-    public function deleteCommander () {
-        
-        return "This should be a controller to delete a commander";
-    }
+    public function destroyCommander($commander_ID) {
 
+        $commander = Commander::find($commander_ID);
+    
+        if ($commander) {
+
+            $commander->delete();
+            
+            return redirect()->route('commanders.index')->with('success', 'Commander deleted successfully');
+        }
+    
+        return redirect()->route('commanders.index')->with('error', 'Commander not found');
+
+    }
+    
 }

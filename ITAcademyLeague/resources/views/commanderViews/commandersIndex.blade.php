@@ -6,6 +6,21 @@
 
      <h1 class="text-2xl font-mtg-title text-white text-center">Commanders Index</h1>
 
+     @if(session('success'))
+
+          <div class="bg-mtg-bg text-white text-center alert alert-success" style="background-color: red;">
+               {{ session('success') }}
+          </div>
+     @endif
+
+     @if(session('error'))
+
+          <div class="bg-mtg-bg text-white text-center alert alert-danger" style="background-color: red;">
+               {{ session('error') }}
+          </div>
+
+     @endif
+
      <table class="table">
 
           <thead class="bg-mtg-bg text-white text-center">
@@ -39,7 +54,14 @@
                          <td>{{ $commander->updated_at }}</td>
                          <td>
                               <a href="{{ route('update.commander', $commander->commander_ID) }}" class="btn btn-primary hover:text-yellow-500 transition duration-300"><i class="fas fa-edit"></i></a>
-                              <a href="{{ route('create.commander', $commander->commander_ID) }}" class="btn btn-danger hover:text-yellow-500 transition duration-300"><i class="fas fa-trash"></i></a>  
+                              
+                              <form action="{{ route('delete.commander', $commander->commander_ID) }}" method="POST">
+                                   @csrf
+                                   @method('DELETE')
+                                   <button type="submit" class="btn btn-danger hover:text-yellow-500 transition duration-300">
+                                       <i class="fas fa-trash"></i>
+                                   </button>
+                               </form>
                          </td>
                     </tr>
 

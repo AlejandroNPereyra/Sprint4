@@ -24,6 +24,7 @@ Route::controller(CommanderController::class)->group(function() {
     Route::get('commanders/createCommander', 'createCommander')->name('create.commander');
     Route::get('commanders/updateCommander', 'updateCommander')->name('update.commander');
     Route::get('commanders/{commander_ID}', 'recallCommander')->name('recall.commander');
+    Route::delete('commanders/{commander_ID}', 'destroyCommander')->name('delete.commander');
 
 });
 

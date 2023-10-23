@@ -17,7 +17,7 @@ class HomeController extends Controller
             ->paginate(10);
 
         return view('home', compact('commandersRanking'));
-
+    
     }
    
 }

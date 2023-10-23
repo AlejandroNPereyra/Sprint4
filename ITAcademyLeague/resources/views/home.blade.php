@@ -4,7 +4,7 @@
 
 @section('content')
 
-     <h1 class="text-2xl font-mtg-title text-white text-center">Commanders Ranking</h1>
+     <h1 class="text-2xl font-mtg-title text-white text-center">Top Rated Commanders</h1>
 
      <table class="table">
           <thead class="bg-mtg-bg text-white text-center">
@@ -37,8 +37,8 @@
           </tbody>
      </table>
 
-     <div class="font-mtg-title text-white text-center">
+     {{-- <div class="font-mtg-title text-white text-center">
           {{ $commandersRanking->links() }}
-     </div>
+     </div> --}}
 
 @endsection

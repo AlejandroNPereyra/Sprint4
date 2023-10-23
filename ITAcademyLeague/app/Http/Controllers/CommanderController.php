@@ -76,7 +76,7 @@ class CommanderController extends Controller {
         return view ('commanderViews.updateCommander', compact('commander'));
     }
 
-    public function destroyCommander($commander_ID) {
+    public function deleteCommander($commander_ID) {
 
         $commander = Commander::find($commander_ID);
     
@@ -90,19 +90,5 @@ class CommanderController extends Controller {
         return redirect()->route('commanders.index')->with('error', 'Commander not found');
 
     }
-
-    // public function showCommanderDetails($commanderID)
-    // {
-    //     // Retrieve commander details
-    //     $commanderData = Commander::find($commanderID);
-    
-    //     // Calculate the rank (you can reuse the code from the home view)
-    //     $rank = $this->calculateRank($commanderID);
-    
-    //     return view('commanderViews.recallCommander', [
-    //         'commanderData' => $commanderData,
-    //         'rank' => $rank, // Pass the rank to the details view
-    //     ]);
-    // }
 
 }

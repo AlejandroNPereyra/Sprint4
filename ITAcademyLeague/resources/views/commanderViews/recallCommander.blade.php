@@ -36,11 +36,14 @@
               <p class="text-mtg-text text-center">{{ $commanderData->duels_lost }}</p>
           </div>
 
-          {{-- <div class="mb-4">
-               <label class="block text-mtg-text font-semibold text-center">Rank</label>
-               <p class="text-mtg-text text-center">{{ $rank }}</p> <!-- Display the rank for the specific commander -->
-           </div> --}}
-
+          {{-- <div class="text-center text-mtg-text mb-4">
+            @if ($rank !== "Not ranked")
+                <p>Rank: {{ $rank }}</p>
+            @else
+                <p>Rank: Not ranked</p>
+            @endif
+        </div> --}}
+        
       </div>
 
       <br><br>

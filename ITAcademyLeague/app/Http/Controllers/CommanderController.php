@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Commander;
 
-class CommanderController extends Controller
-{
+class CommanderController extends Controller {
+    
     public function commandersIndex () {
 
         $commandersIndex = Commander::paginate(10);
@@ -39,7 +39,27 @@ class CommanderController extends Controller
 
         }
     
-        return redirect()->route('commanders.index')->with('error', 'Not enough data to summon a new Commander');
+        return redirect()->route('commanders.index')->with('error', 'Not enough mana to summon a new Commander');
+
+    }
+
+    public function storeOnUpdateCommander (Commander $commander, Request $request) {
+
+        $commander->commander_name = $request->commander_name;
+        $commander->description = $request->description;
+        $commander->email = $request->email;
+
+        $commander->save();
+
+        if ($commander) {
+
+            $commander->save();
+            
+            return redirect()->route('commanders.index')->with('success', 'Commander updated!');
+
+        }
+    
+        return redirect()->route('commanders.index')->with('error', 'Not enough mana to update a Commander');
 
     }
 
@@ -70,5 +90,5 @@ class CommanderController extends Controller
         return redirect()->route('commanders.index')->with('error', 'Commander not found');
 
     }
-    
+
 }

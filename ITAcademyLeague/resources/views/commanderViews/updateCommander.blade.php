@@ -7,8 +7,11 @@
 <div class="container mx-auto mt-10 p-6 bg-mtg-card rounded-lg border-mtg-border">
     <h1 class="text-2xl font-mtg-title mb-4 text-mtg-text">Update Commander Form</h1>
 
-    <form method="POST" action="{{ route('store.commander') }}" class="mt-4">
+    <form method="POST" action="{{ route('storeOnUpdate.commander', $commander) }}" class="mt-4">
+
         @csrf
+
+        @method('put')
 
         <style>
             

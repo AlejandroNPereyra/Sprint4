@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class DuelController extends Controller {
 
+    protected $primaryKey = 'duel_ID';
+
     public function duelsIndex() {
 
     $duelsIndex = Duel::select(
@@ -44,9 +46,13 @@ class DuelController extends Controller {
 
     public function deleteDuel(Duel $duel) {
         if ($duel) {
+
             $duel->delete();
+
             return redirect()->route('duels.index')->with('success', 'Duel deleted successfully');
+
         }
+        
         return redirect()->route('duels.index')->with('error', 'Duel not found');
     }
 

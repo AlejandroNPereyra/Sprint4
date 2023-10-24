@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Duel;
 use Illuminate\Http\Request;
 
-class DuelController extends Controller
-{
+class DuelController extends Controller {
+
     public function duelsIndex () {
-        return view ('duelViews.duelsIndex');
-    }
+
+        $duelsIndex = Duel::paginate(10);
+
+        return view ('duelViews.duelsIndex', compact('duelsIndex'));
 
     public function createDuel () {
         return view ('duelViews.createDuel');

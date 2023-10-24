@@ -7,6 +7,8 @@ use App\Models\Commander;
 
 class CommanderController extends Controller {
 
+    protected $primaryKey = 'commander_ID';
+
     public function commandersIndex () {
 
         $commandersIndex = Commander::orderBy('commander_name', 'asc')->paginate(10);

@@ -9,7 +9,7 @@ class CommanderController extends Controller {
 
     public function commandersIndex () {
 
-        $commandersIndex = Commander::paginate(10);
+        $commandersIndex = Commander::orderBy('commander_name', 'asc')->paginate(10);
 
         return view ('commanderViews.commandersIndex', compact('commandersIndex'));
 

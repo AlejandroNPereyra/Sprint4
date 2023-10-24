@@ -4,7 +4,7 @@
 
 @section('content')
 
-     <h1 class="text-2xl font-mtg-title text-white text-center">Commanders Index</h1>
+     <h1 class="text-2xl font-mtg-title text-white text-center">Commanders Index (A-Z)</h1>
 
      @if(session('success'))
 

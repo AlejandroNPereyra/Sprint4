@@ -12,6 +12,7 @@ class DuelController extends Controller {
         $duelsIndex = Duel::paginate(10);
 
         return view ('duelViews.duelsIndex', compact('duelsIndex'));
+    }
 
     public function createDuel () {
         return view ('duelViews.createDuel');

@@ -79,11 +79,15 @@ class CommanderController extends Controller {
     }
 
     public function deleteCommander(Commander $commander) {
+
         if ($commander) {
             $commander->delete();
             return redirect()->route('commanders.index')->with('success', 'Commander deleted successfully');
+
         }
+
         return redirect()->route('commanders.index')->with('error', 'Commander not found');
+        
     }
 
 }

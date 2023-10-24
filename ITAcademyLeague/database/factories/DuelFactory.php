@@ -24,7 +24,7 @@ class DuelFactory extends Factory
 
         return [
 
-            'date' => $this->faker->dateTimeBetween('2020-01-01', 'now'),
+            'date' => $this->faker->dateTimeBetween('2023-01-01', 'now'),
             'celebrated_at' => $this->faker->fantasyPlace(),
 
             'winner_ID' => function () {

@@ -37,6 +37,7 @@ Route::controller(DuelController::class)->group(function() {
     Route::get('duels/updateDuel', 'updateDuel')->name('update.duel');
     Route::get('duels/{duel_ID}', 'recallDuel')->name('recall.duel');
     Route::delete('duels/{duel}', 'deleteDuel')->name('delete.duel');
+    Route::post('duels', 'storeDuel')->name('store.duel');
 
 });
 

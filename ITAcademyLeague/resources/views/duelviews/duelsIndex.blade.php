@@ -106,7 +106,7 @@
 
           function confirmDelete(duelDate) {
 
-              if (confirm(`Are you sure you want to delete the duel on ${duelDate}?`)) {
+              if (confirm(`Are you sure you want to delete the duel: ${duelDate}?`)) {
 
                   document.querySelector('form').submit();
 

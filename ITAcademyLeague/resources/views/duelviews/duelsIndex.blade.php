@@ -66,7 +66,8 @@
                @foreach ($duelsIndex as $duel)
 
                     <tr>
-                         <td>{{ $duel->duel_ID }}</td>
+                         <td><a href="{{ route('recall.duel', $duel->duel_ID) }}" style="color: #007bff; transition: color 0.3s; text-decoration: none;" onmouseover="this.style.color='#ff9900'" onmouseout="this.style.color='#007bff'">{{ $duel->duel_ID }}</a></td>
+
                          <td>{{ $duel->date }}</td>
                          <td>{{ $duel->celebrated_at }}</td>
                          {{-- <td><a href="{{ route('recall.commander', $commander->commander_ID) }}" style="color: #007bff; transition: color 0.3s; text-decoration: none;" onmouseover="this.style.color='#ff9900'" onmouseout="this.style.color='#007bff'">{{ $duel->winner_name }}</a></td> --}}
@@ -106,7 +107,7 @@
           function confirmDelete(duelDate) {
 
               if (confirm(`Are you sure you want to delete the duel on ${duelDate}?`)) {
-                  // If the user confirms, submit the form
+
                   document.querySelector('form').submit();
 
               }

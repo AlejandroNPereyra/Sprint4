@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Duel;
-use App\Models\Commander;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,8 +17,6 @@ class DuelController extends Controller {
         'duels.*',
         'winners.commander_name AS winner_name',
         'losers.commander_name AS loser_name',
-        'winners.commander_ID AS winner_id',
-        'losers.commander_ID AS loser_id'
 
     )
 
@@ -32,12 +29,24 @@ class DuelController extends Controller {
 
     }
 
-    public function createDuel () {
-        return view ('duelViews.createDuel');
+    public function recallduel ($duel_ID) {
+
+        $duelData = Duel::find ($duel_ID);
+
+        $commanderNames = DB::table('duels')
+
+        ->select('duels.*', 'winners.commander_name AS winner_name', 'losers.commander_name AS loser_name')
+        ->join('commanders AS winners', 'duels.winner_ID', '=', 'winners.commander_ID')
+        ->join('commanders AS losers', 'duels.loser_ID', '=', 'losers.commander_ID')
+        ->where('duels.duel_ID', $duel_ID)
+        ->first();
+
+        return view ('duelViews.recallDuel', compact('duelData', 'commanderNames'));
+
     }
 
-    public function recallDuel ($duel) {
-        return view ('duelViews.recallDuel', compact('duel'));
+    public function createDuel () {
+        return view ('duelViews.createDuel');
     }
 
     public function updateDuel () {
@@ -52,7 +61,7 @@ class DuelController extends Controller {
             return redirect()->route('duels.index')->with('success', 'Duel deleted successfully');
 
         }
-        
+
         return redirect()->route('duels.index')->with('error', 'Duel not found');
     }
 

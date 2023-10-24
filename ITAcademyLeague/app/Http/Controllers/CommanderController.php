@@ -45,6 +45,20 @@ class CommanderController extends Controller {
 
     }
 
+    public function recallCommander ($commander_ID) {
+
+        $commanderData = Commander::find ($commander_ID);
+
+        return view ('commanderViews.recallCommander', compact('commanderData'));
+
+    }
+
+    public function updateCommander (Commander $commander) {
+
+        return view ('commanderViews.updateCommander', compact('commander'));
+        
+    }
+
     public function storeOnUpdateCommander (Commander $commander, Request $request) {
 
         $commander->commander_name = $request->commander_name;
@@ -65,23 +79,12 @@ class CommanderController extends Controller {
 
     }
 
-    public function recallCommander ($commander_ID) {
-
-        $commanderData = Commander::find ($commander_ID);
-
-        return view ('commanderViews.recallCommander', compact('commanderData'));
-
-    }
-
-    public function updateCommander (Commander $commander) {
-
-        return view ('commanderViews.updateCommander', compact('commander'));
-    }
-
     public function deleteCommander(Commander $commander) {
 
         if ($commander) {
+
             $commander->delete();
+            
             return redirect()->route('commanders.index')->with('success', 'Commander deleted successfully');
 
         }

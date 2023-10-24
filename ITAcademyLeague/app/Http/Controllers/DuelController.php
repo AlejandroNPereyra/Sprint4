@@ -8,7 +8,6 @@ use Faker\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Providers\FantasyPlaceProvider;
-// use Illuminate\Support\Facades\Validator; // Import the Validator class
 
 
 class DuelController extends Controller {
@@ -76,7 +75,7 @@ class DuelController extends Controller {
 
         $newDuel->date = $request->date;
         $newDuel->celebrated_at = $request->celebrated_at;
-        $newDuel->winner_ID = $request->winner_commander; // Check this line
+        $newDuel->winner_ID = $request->winner_commander;
         $newDuel->loser_ID = $request->loser_commander; 
         $newDuel->winner_mana_used = $request->winner_mana_used;
         $newDuel->loser_mana_used = $request->loser_mana_used;
@@ -95,11 +94,53 @@ class DuelController extends Controller {
 
     }
 
-    public function updateDuel () {
-        return view ('duelViews.updateDuel');
+    public function updateDuel (Duel $duel) {
+
+        $faker = Factory::create();
+        $fantasyPlaceProvider = new FantasyPlaceProvider($faker);
+
+        $fantasyPlaces = [];
+
+        for ($i = 0; $i < 35; $i++) { 
+            $fantasyPlaces[] = $fantasyPlaceProvider->fantasyPlace();
+        }
+
+        $commanders = Commander::all();
+
+        return view ('duelViews.updateDuel', compact ('duel', 'fantasyPlaces', 'commanders'));
+
+    }
+
+    public function storeOnUpdateDuel (Duel $duel, Request $request) {
+
+        $duel_ID = $request->input('duel_ID');
+        $duel = Duel::findOrFail($duel_ID); // You can use findOrFail or your preferred method to retrieve the Duel
+
+        // Update the duel with the request data
+
+        $duel->date = $request->date;
+        $duel->celebrated_at = $request->celebrated_at;
+        $duel->winner_ID = $request->winner_commander;
+        $duel->loser_ID = $request->loser_commander; 
+        $duel->winner_mana_used = $request->winner_mana_used;
+        $duel->loser_mana_used = $request->loser_mana_used;
+
+        $duel->save();
+
+        if ($duel) {
+
+            $duel->save();
+            
+            return redirect()->route('duels.index')->with('success', 'Duel updated!');
+
+        }
+    
+        return redirect()->route('duels.index')->with('error', 'Not enough mana to update a Duel');
+
     }
 
     public function deleteDuel(Duel $duel) {
+
         if ($duel) {
 
             $duel->delete();

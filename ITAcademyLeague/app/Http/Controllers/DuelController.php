@@ -86,7 +86,7 @@ class DuelController extends Controller {
 
             $newDuel->save();
             
-            return redirect()->route('duels.index')->with('success', 'Duel summoned successfully!');
+            return redirect()->route('duels.index')->with('success', 'Duel summoned successfully');
 
         }
     
@@ -111,27 +111,21 @@ class DuelController extends Controller {
 
     }
 
-    public function storeOnUpdateDuel (Duel $duel, Request $request) {
-
-        $duel_ID = $request->input('duel_ID');
-        $duel = Duel::findOrFail($duel_ID); // You can use findOrFail or your preferred method to retrieve the Duel
+    public function storeOnUpdateDuel(Duel $duel, Request $request) {
 
         // Update the duel with the request data
-
         $duel->date = $request->date;
         $duel->celebrated_at = $request->celebrated_at;
         $duel->winner_ID = $request->winner_commander;
-        $duel->loser_ID = $request->loser_commander; 
+        $duel->loser_ID = $request->loser_commander;
         $duel->winner_mana_used = $request->winner_mana_used;
         $duel->loser_mana_used = $request->loser_mana_used;
-
+        
         $duel->save();
-
+    
         if ($duel) {
 
-            $duel->save();
-            
-            return redirect()->route('duels.index')->with('success', 'Duel updated!');
+            return redirect()->route('duels.index')->with('success', 'Duel updated');
 
         }
     

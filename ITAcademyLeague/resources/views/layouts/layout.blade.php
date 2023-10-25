@@ -38,13 +38,33 @@
 <body class="bg-mtg-bg">
 
     <header class="bg-mtg-card p-4 text-center text-mtg-text">
-        <h1 class="text-2xl font-mtg-title"><a href="{{ route('home') }}" class="text-white hover:text-yellow-500 mx-2" style="transition: color 0.3s;">MANA: THE RABBLEMENT<br>TOURNAMENT</a></h1>
-        <nav class="mt-4">
-            <a href="{{ route('commanders.index') }}" class="text-white hover:text-red-500 mx-2" style="transition: color 0.3s;">COMMANDERS</a>
-            <a href="{{ route('duels.index') }}" class="text-white hover:text-red-500 mx-2" style="transition: color 0.3s;">DUELS</a>
-        </nav>
-    </header>
 
+        <h1 class="text-2xl font-mtg-title">
+
+            <a href="{{ route('home') }}" class="text-white hover:text-yellow-500 mx-2" style="transition: color 0.3s;">
+                <span class="mr-2"><i class="fas fa-magic"></i></span>
+                MANA: THE RABBLEMENT<br>TOURNAMENT
+                <span class="ml-2"><i class="fas fa-dragon"></i></span>
+            </a>
+
+        </h1>
+
+        <nav class="mt-4">
+
+            <a href="{{ route('commanders.index') }}" class="text-white hover:text-red-500 mx-2" style="transition: color 0.3s;">
+                <span class="mr-2"><i class="fas fa-medal"></i></span>
+                COMMANDERS
+            </a>
+
+            <a href="{{ route('duels.index') }}" class="text-white hover:text-red-500 mx-2" style="transition: color 0.3s;">
+                DUELS
+                <span class="ml-2"><i class="fas fa-crosshairs"></i></span>
+            </a>
+            
+        </nav>
+
+    </header>
+    
     @yield('content')
 
     <footer class="bg-mtg-card p-4 text-center text-mtg-text">

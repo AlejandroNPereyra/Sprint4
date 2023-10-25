@@ -44,6 +44,7 @@
                @foreach ($commandersIndex as $commander)
 
                     <tr>
+                         
                          <td><a href="{{ route('recall.commander', $commander->commander_ID) }}" style="color: #007bff; transition: color 0.3s; text-decoration: none;" onmouseover="this.style.color='#ff9900'" onmouseout="this.style.color='#007bff'">{{ $commander->commander_name }}</a></td>
                          <td>{{ $commander->description }}</td>
                          <td>{{ $commander->mana }}</td>
@@ -55,14 +56,16 @@
                          <td>
                               <a href="{{ route('update.commander', $commander->commander_ID) }}" class="btn btn-primary hover:text-yellow-500 transition duration-300"><i class="fas fa-edit"></i></a>
                               
-                              <form action="{{ route('delete.commander', $commander) }}" method="POST">
+                              <form id="deleteForm-{{ $commander->commander_ID }}" action="{{ route('delete.commander', $commander) }}" method="POST">
                                    @csrf
                                    @method('DELETE')
-                                   <button type="submit" class="btn btn-danger hover:text-yellow-500 transition duration-300" onclick="confirmDelete('{{ $commander->commander_name }}')">
+                                   <button type="button" class="btn btn-danger hover:text-yellow-500 transition duration-300" onclick="confirmDelete('{{ $commander->commander_name }}', '{{ $commander->commander_ID }}')">
                                        <i class="fas fa-trash"></i>
                                    </button>
-                               </form>
+                               </form>                             
+
                          </td>
+
                     </tr>
 
                @endforeach
@@ -77,16 +80,23 @@
 
      <script>
 
-          function confirmDelete(commanderName) {
+          function confirmDelete(commanderName, commanderID) {
 
               if (confirm(`Are you sure you want to delete ${commanderName}? This will also delete all associated duels.`)) {
-                  // If the user confirms, submit the form
-                  document.querySelector('form').submit();
+               
+                  // If the user confirms, submit the corresponding form
+                  const formID = `deleteForm-${commanderID}`;
+                  const form = document.getElementById(formID);
+      
+                  if (form) {
+
+                      form.submit();
+                  }
 
               }
-              
+
           }
 
       </script>
-
+      
 @endsection

@@ -80,13 +80,14 @@
 
                               <a href="{{ route('update.duel', $duel->duel_ID) }}" class="btn btn-primary hover:text-yellow-500 transition duration-300"><i class="fas fa-edit"></i></a>
                               
-                              <form action="{{ route('delete.duel', ['duel' => $duel->duel_ID]) }}" method="POST">
+                              <form id="deleteForm-{{ $duel->duel_ID }}" action="{{ route('delete.duel', ['duel' => $duel->duel_ID]) }}" method="POST">
                                    @csrf
                                    @method('DELETE')
-                                   <br><button type="submit" class="btn btn-danger hover:text-yellow-500 transition duration-300" onclick="confirmDelete('{{ $duel->duel_ID }}')">
-                                        <i class="fas fa-trash"></i>
+                                   <br>
+                                   <button type="button" class="btn btn-danger hover:text-yellow-500 transition duration-300" onclick="confirmDelete('{{ $duel->duel_ID }}')">
+                                       <i class="fas fa-trash"></i>
                                    </button>
-                              </form>
+                               </form>
 
                          </td>
                     </tr>
@@ -103,12 +104,23 @@
 
      <script>
 
-          function confirmDelete(duelDate) {
+          function confirmDelete(duelID) {
 
-              if (confirm(`Are you sure you want to delete the duel: ${duelDate}?`)) {
+              if (confirm(`Are you sure you want to delete the duel ${duelID}?`)) {
 
-                  document.querySelector('form').submit();
+                  // Construct the form ID based on the duelID
+                  const formID = `deleteForm-${duelID}`;
+                  const form = document.getElementById(formID);
+      
+                  if (form) {
 
+                      form.submit();
+
+                  }
+
+              } else {
+
+                  return false; // Prevent form submission
               }
               
           }

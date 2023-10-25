@@ -4,12 +4,12 @@
 
 @section('content')
 
-     <h1 class="text-2xl font-mtg-title text-white text-center">Top Rated Commanders</h1>
+     <h1 class="text-2xl font-mtg-title text-white text-center">Top Rated</h1>
 
      <table class="table">
           <thead class="bg-mtg-bg text-white text-center">
                <tr>
-                    <th>Rank</th>
+                    <th>Rank<i class="fas fa-crown text-yellow-500"></i></th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Mana</th>

@@ -52,8 +52,6 @@
         <p class="text-mtg-text text-center">{{ $duelData->updated_at }}</p>
     </div>
 
-</div>
-
-<br><br>
+</div><br><br>
 
 @endsection

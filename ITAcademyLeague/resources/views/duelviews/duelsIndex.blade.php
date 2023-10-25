@@ -70,7 +70,6 @@
 
                          <td>{{ $duel->date }}</td>
                          <td>{{ $duel->celebrated_at }}</td>
-                         {{-- <td><a href="{{ route('recall.commander', $commander->commander_ID) }}" style="color: #007bff; transition: color 0.3s; text-decoration: none;" onmouseover="this.style.color='#ff9900'" onmouseout="this.style.color='#007bff'">{{ $duel->winner_name }}</a></td> --}}
                          <td>{{ $duel->winner_name }}</td>
                          <td>{{ $duel->loser_name }}</td>
                          <td>{{ $duel->winner_mana_used }}</td>

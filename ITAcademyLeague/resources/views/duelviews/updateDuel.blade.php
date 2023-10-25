@@ -3,10 +3,12 @@
 @section('title', 'Update Duel')
 
 @section('content')
+
 <div class="container mx-auto mt-10 p-6 bg-mtg-card rounded-lg border-mtg-border">
     <h1 class="text-2xl font-mtg-title mb-4 text-mtg-text">Update Duel {{ $duel->duel_ID}} </h1>
 
     <form method="POST" action="{{ route('storeOnUpdate.duel', ['duel' => $duel]) }}" class="mt-4">
+
         @csrf
         @method('PUT')
 
@@ -56,7 +58,11 @@
         </div>
 
         <input type="submit" value="Summon" class="bg-mtg-button text-mtg-button-text px-4 py-2 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none">
+
     </form>
+
 </div>
+
 <br><br>
+
 @endsection

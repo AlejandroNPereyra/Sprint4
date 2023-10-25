@@ -4,7 +4,7 @@
 
 @section('content')
 
-     <h1 class="text-2xl font-mtg-title text-white text-center">Commanders Index (A-Z)</h1>
+     <br><h1 class="text-2xl font-mtg-title text-white text-center">Commanders Index (A-Z)</h1><br>
 
      @if(session('success'))
 
@@ -55,10 +55,10 @@
                          <td>
                               <a href="{{ route('update.commander', $commander->commander_ID) }}" class="btn btn-primary hover:text-yellow-500 transition duration-300"><i class="fas fa-edit"></i></a>
                               
-                              <form action="{{ route('delete.commander', $commander->commander_ID) }}" method="POST">
+                              <form action="{{ route('delete.commander', $commander) }}" method="POST">
                                    @csrf
                                    @method('DELETE')
-                                   <button type="button" class="btn btn-danger hover:text-yellow-500 transition duration-300" onclick="confirmDelete('{{ $commander->commander_name }}')">
+                                   <button type="submit" class="btn btn-danger hover:text-yellow-500 transition duration-300" onclick="confirmDelete('{{ $commander->commander_name }}')">
                                        <i class="fas fa-trash"></i>
                                    </button>
                                </form>

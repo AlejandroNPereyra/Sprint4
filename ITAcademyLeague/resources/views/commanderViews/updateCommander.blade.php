@@ -37,6 +37,7 @@
         </div>
 
         <input type="submit" value="Re-Summon" class="bg-mtg-button text-mtg-button-text px-4 py-2 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none">
+        
     </form>
 
 </div><br><br>

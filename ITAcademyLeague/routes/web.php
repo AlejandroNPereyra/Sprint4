@@ -24,7 +24,7 @@ Route::controller(CommanderController::class)->group(function() {
     Route::get('commanders/createCommander', 'createCommander')->name('create.commander');
     Route::get('commanders/{commander}/updateCommander', 'updateCommander')->name('update.commander');
     Route::get('commanders/{commander_ID}', 'recallCommander')->name('recall.commander');
-    Route::delete('commanders/{commander_ID}', 'deleteCommander')->name('delete.commander');
+    Route::delete('commanders/{commander}', 'deleteCommander')->name('delete.commander');
     Route::post('commanders', 'storeCommander')->name('store.commander');
     Route::put('commanders/{commander}', 'storeOnUpdateCommander')->name('storeOnUpdate.commander');
 
@@ -34,8 +34,11 @@ Route::controller(DuelController::class)->group(function() {
 
     Route::get('duels', 'duelsIndex')->name('duels.index');
     Route::get('duels/createDuel', 'createDuel')->name('create.duel');
-    Route::get('duels/updateDuel', 'updateDuel')->name('update.duel');
+    Route::get('duels/{duel}/updateDuel', 'updateDuel')->name('update.duel');
     Route::get('duels/{duel}', 'recallDuel')->name('recall.duel');
+    Route::delete('duels/{duel}', 'deleteDuel')->name('delete.duel');
+    Route::post('duels', 'storeDuel')->name('store.duel');
+    Route::put('duels/{duel}', 'storeOnUpdateDuel')->name('storeOnUpdate.duel');
 
 });
 

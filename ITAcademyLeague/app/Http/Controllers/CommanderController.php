@@ -7,6 +7,8 @@ use App\Models\Commander;
 
 class CommanderController extends Controller {
 
+    protected $primaryKey = 'commander_ID';
+
     public function commandersIndex () {
 
         $commandersIndex = Commander::orderBy('commander_name', 'asc')->paginate(10);
@@ -43,6 +45,20 @@ class CommanderController extends Controller {
 
     }
 
+    public function recallCommander ($commander_ID) {
+
+        $commanderData = Commander::find ($commander_ID);
+
+        return view ('commanderViews.recallCommander', compact('commanderData'));
+
+    }
+
+    public function updateCommander (Commander $commander) {
+
+        return view ('commanderViews.updateCommander', compact('commander'));
+        
+    }
+
     public function storeOnUpdateCommander (Commander $commander, Request $request) {
 
         $commander->commander_name = $request->commander_name;
@@ -63,32 +79,18 @@ class CommanderController extends Controller {
 
     }
 
-    public function recallCommander ($commander_ID) {
+    public function deleteCommander(Commander $commander) {
 
-        $commanderData = Commander::find ($commander_ID);
-
-        return view ('commanderViews.recallCommander', compact('commanderData'));
-
-    }
-
-    public function updateCommander (Commander $commander) {
-
-        return view ('commanderViews.updateCommander', compact('commander'));
-    }
-
-    public function deleteCommander($commander_ID) {
-
-        $commander = Commander::find($commander_ID);
-    
         if ($commander) {
 
             $commander->delete();
             
             return redirect()->route('commanders.index')->with('success', 'Commander deleted successfully');
-        }
-    
-        return redirect()->route('commanders.index')->with('error', 'Commander not found');
 
+        }
+
+        return redirect()->route('commanders.index')->with('error', 'Commander not found');
+        
     }
 
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Commander;
 use App\Http\Requests\NewCommanderRequest;
 use App\Http\Requests\UpdateCommanderRequest;

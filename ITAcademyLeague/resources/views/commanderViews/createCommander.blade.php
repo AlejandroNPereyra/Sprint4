@@ -23,7 +23,7 @@
             <input type="text" id="commander_name" name="commander_name" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-mtg-text focus:outline-none focus:border-mtg-highlight" value="{{ old('commander_name') }}">
             <br>
                 @error('commander_name')
-                    <span class="font-mtg-title text-white text-center"> {{ $message }} </span>
+                     <span class="font-mtg-title text-red-500 text-center"> {{ $message }} </span>
                 @enderror
             <br>
         </div>
@@ -33,7 +33,7 @@
             <input type="text" id="description" name="description" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-mtg-text focus:outline-none focus:border-mtg-highlight" value="{{ old('description') }}">
             <br>
                 @error('description')
-                    <span class="font-mtg-title text-white text-center"> {{ $message }} </span>
+                      <span class="font-mtg-title text-red-500 text-center"> {{ $message }} </span>
                 @enderror
             <br>
         </div>
@@ -43,7 +43,7 @@
             <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-mtg-text focus:outline-none focus:border-mtg-highlight" value="{{ old('email') }}">
             <br>
                 @error('email')
-                    <span class="font-mtg-title text-white text-center"> {{ $message }} </span>
+                      <span class="font-mtg-title text-red-500 text-center"> {{ $message }} </span>
                 @enderror
             <br>
         </div>

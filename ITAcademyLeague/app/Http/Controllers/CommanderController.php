@@ -26,19 +26,13 @@ class CommanderController extends Controller {
 
     public function storeCommander (NewCommanderRequest $request) {
 
-        $newCommander = new Commander();
-
-        $newCommander->commander_name = $request->commander_name;
-        $newCommander->description = $request->description;
-        $newCommander->email = $request->email;
-
-        $newCommander->save();
+        $newCommander = Commander::create($request->all());
 
         if ($newCommander) {
 
             $newCommander->save();
             
-            return redirect()->route('commanders.index')->with('success', 'Commander registered successfully!');
+            return redirect()->route('commanders.index')->with('success', 'Commander registered successfully');
 
         }
     
@@ -62,9 +56,7 @@ class CommanderController extends Controller {
 
     public function storeOnUpdateCommander (Commander $commander, UpdateCommanderRequest $request) {
 
-        $commander->commander_name = $request->commander_name;
-        $commander->description = $request->description;
-        $commander->email = $request->email;
+        $commander->update($request->all());
 
         $commander->save();
 

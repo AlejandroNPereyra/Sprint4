@@ -10,6 +10,7 @@ use Faker\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Providers\FantasyPlaceProvider;
+use Illuminate\Support\Collection;
 
 
 class DuelController extends Controller {
@@ -53,40 +54,26 @@ class DuelController extends Controller {
 
     public function createDuel (Request $request) {
 
-        $faker = Factory::create();
-        $fantasyPlaceProvider = new FantasyPlaceProvider($faker);
-
-        // Create an array with all fantasy places
-
-        $fantasyPlaces = [];
-        for ($i = 0; $i < 35; $i++) { // You can change the number as needed
-
-            $fantasyPlaces[] = $fantasyPlaceProvider->fantasyPlace();
-
-        }
-
-        $commanders = Commander::all();
+        list($fantasyPlaces, $commanders) = $this->getFantasyPlacesAndCommanders();
 
         return view ('duelViews.createDuel', compact('fantasyPlaces', 'commanders'));
 
     }
 
     public function storeDuel (CreateDuelRequest $request) {
-
-        $newDuel = new Duel();
-
-        $newDuel->date = $request->date;
-        $newDuel->celebrated_at = $request->celebrated_at;
-        $newDuel->winner_ID = $request->winner_commander;
-        $newDuel->loser_ID = $request->loser_commander; 
-        $newDuel->winner_mana_used = $request->winner_mana_used;
-        $newDuel->loser_mana_used = $request->loser_mana_used;
         
-        $newDuel->save();
+        $duel = new Duel();
 
-        if ($newDuel) {
+        $duel->date = $request->input('date');
+        $duel->celebrated_at = $request->input('celebrated_at');
+        $duel->winner_ID = $request->input('winner_commander');
+        $duel->loser_ID = $request->input('loser_commander');
+        $duel->winner_mana_used = $request->input('winner_mana_used');
+        $duel->loser_mana_used = $request->input('loser_mana_used');
 
-            $newDuel->save();
+        $duel->save();
+
+        if ($duel) {
             
             return redirect()->route('duels.index')->with('success', 'Duel summoned successfully');
 
@@ -98,16 +85,7 @@ class DuelController extends Controller {
 
     public function updateDuel (Duel $duel) {
 
-        $faker = Factory::create();
-        $fantasyPlaceProvider = new FantasyPlaceProvider($faker);
-
-        $fantasyPlaces = [];
-
-        for ($i = 0; $i < 35; $i++) { 
-            $fantasyPlaces[] = $fantasyPlaceProvider->fantasyPlace();
-        }
-
-        $commanders = Commander::all();
+        list($fantasyPlaces, $commanders) = $this->getFantasyPlacesAndCommanders();
 
         return view ('duelViews.updateDuel', compact ('duel', 'fantasyPlaces', 'commanders'));
 
@@ -115,13 +93,12 @@ class DuelController extends Controller {
 
     public function storeOnUpdateDuel(Duel $duel, UpdateDuelRequest $request) {
 
-        // Update the duel with the request data
-        $duel->date = $request->date;
-        $duel->celebrated_at = $request->celebrated_at;
-        $duel->winner_ID = $request->winner_commander;
-        $duel->loser_ID = $request->loser_commander;
-        $duel->winner_mana_used = $request->winner_mana_used;
-        $duel->loser_mana_used = $request->loser_mana_used;
+        $duel->date = $request->input('date');
+        $duel->celebrated_at = $request->input('celebrated_at');
+        $duel->winner_ID = $request->input('winner_commander');
+        $duel->loser_ID = $request->input('loser_commander');
+        $duel->winner_mana_used = $request->input('winner_mana_used');
+        $duel->loser_mana_used = $request->input('loser_mana_used');
         
         $duel->save();
     
@@ -146,6 +123,33 @@ class DuelController extends Controller {
         }
 
         return redirect()->route('duels.index')->with('error', 'Duel not deleted');
+    }
+
+    private function getFantasyPlacesAndCommanders() {
+
+        $faker = Factory::create();
+        $fantasyPlaceProvider = new FantasyPlaceProvider($faker);
+    
+        $fantasyPlaces = [];
+    
+        for ($i = 0; $i < 35; $i++) {
+
+            $fantasyPlaces[] = $fantasyPlaceProvider->fantasyPlace();
+
+        }
+
+        $fantasyPlaces = Collection::make($fantasyPlaces)->sortBy(function ($place) {
+
+            return strtolower($place);
+
+        });
+    
+        $commanders = Commander::all();
+
+        $commanders = Collection::make($commanders)->sortBy('commander_name');
+    
+        return [$fantasyPlaces, $commanders];
+
     }
 
 }

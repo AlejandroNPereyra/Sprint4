@@ -5,20 +5,19 @@
 @section('content')
 
 <div class="container mx-auto mt-10 p-6 bg-mtg-card rounded-lg border-mtg-border">
-    <h1 class="text-2xl font-mtg-title mb-4 text-mtg-text">Update Duel {{ $duel->duel_ID}} </h1>
+    <h1 class="text-2xl font-mtg-title mb-4 text-mtg-text">Update Duel {{ $duel->duel_ID }} </h1>
 
     <form method="POST" action="{{ route('storeOnUpdate.duel', ['duel' => $duel]) }}" class="mt-4">
-
         @csrf
         @method('PUT')
 
         <div class="mb-4">
             <label for="date" class="block text-mtg-text font-semibold">Date</label>
-            <input type="datetime-local" id="date" name="date" value="{{ $duel->date }}" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
+            <input type="datetime-local" id="date" name="date" value="{{ old('date', $duel->date) }}" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
             <br>
-                @error('date')
-                     <span class="text-red-500">{{ $message }}</span>
-                @enderror
+            @error('date')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
             <br>
         </div>
 
@@ -27,13 +26,13 @@
             <select id="celebrated_at" name="celebrated_at" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
                 <option value="" disabled>Select a place</option>
                 @foreach($fantasyPlaces as $place)
-                    <option value="{{ $place }}" {{ $place == $duel->celebrated_at ? 'selected' : '' }}>{{ $place }}</option>
+                    <option value="{{ $place }}" {{ $place == old('celebrated_at', $duel->celebrated_at) ? 'selected' : '' }}>{{ $place }}</option>
                 @endforeach
             </select>
             <br>
-                @error('celebrated_at')
-                    <span class="text-red-500">{{ $message }}</span>
-                @enderror
+            @error('celebrated_at')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
             <br>
         </div>
 
@@ -42,13 +41,13 @@
             <select id="winner_commander" name="winner_commander" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
                 <option value="" disabled>Select a commander</option>
                 @foreach($commanders as $commander)
-                    <option value="{{ $commander->commander_ID }}" {{ $commander->commander_ID == $duel->winner_ID ? 'selected' : '' }}>{{ $commander->commander_name }}</option>
+                    <option value="{{ $commander->commander_ID }}" {{ $commander->commander_ID == old('winner_commander', $duel->winner_ID) ? 'selected' : '' }}>{{ $commander->commander_name }}</option>
                 @endforeach
             </select>
             <br>
-                @error('winner_commander')
-                    <span class="text-red-500">{{ $message }}</span>
-                @enderror
+            @error('winner_commander')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
             <br>
         </div>
 
@@ -57,40 +56,38 @@
             <select id="loser_commander" name="loser_commander" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
                 <option value="" disabled>Select a commander</option>
                 @foreach($commanders as $commander)
-                    <option value="{{ $commander->commander_ID }}" {{ $commander->commander_ID == $duel->loser_ID ? 'selected' : '' }}>{{ $commander->commander_name }}</option>
+                    <option value="{{ $commander->commander_ID }}" {{ $commander->commander_ID == old('loser_commander', $duel->loser_ID) ? 'selected' : '' }}>{{ $commander->commander_name }}</option>
                 @endforeach
             </select>
             <br>
-                @error('loser_commander')
-                    <span class="text-red-500">{{ $message }}</span>
-                @enderror
+            @error('loser_commander')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
             <br>
         </div>
 
         <div class="mb-4">
             <label for="winner_mana_used" class="block text-mtg-text font-semibold">Winner's Mana Used</label>
-            <input type="number" id="winner_mana_used" name="winner_mana_used" value="{{ $duel->winner_mana_used }}" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
+            <input type="number" id="winner_mana_used" name="winner_mana_used" value="{{ old('winner_mana_used', $duel->winner_mana_used) }}" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
             <br>
-                @error('winner_mana_used')
-                    <span class="text-red-500">{{ $message }}</span>
-                @enderror
+            @error('winner_mana_used')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
             <br>
         </div>
 
         <div class="mb-4">
             <label for="loser_mana_used" class="block text-mtg-text font-semibold">Loser's Mana Used</label>
-            <input type="number" id="loser_mana_used" name="loser_mana_used" value="{{ $duel->loser_mana_used }}" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
+            <input type="number" id="loser_mana_used" name="loser_mana_used" value="{{ old('loser_mana_used', $duel->loser_mana_used) }}" class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
             <br>
-                @error('loser_mana_used')
-                    <span class="text-red-500">{{ $message }}</span>
-                @enderror
+            @error('loser_mana_used')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
             <br>
         </div>
 
         <input type="submit" value="Summon" class="bg-mtg-button text-mtg-button-text px-4 py-2 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none">
-
     </form>
-
 </div>
 
 <br><br>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Commander;
+use App\Http\Requests\NewCommanderRequest;
+use App\Http\Requests\UpdateCommanderRequest;
 
 class CommanderController extends Controller {
 
@@ -23,7 +24,7 @@ class CommanderController extends Controller {
 
     }
 
-    public function storeCommander (Request $request) {
+    public function storeCommander (NewCommanderRequest $request) {
 
         $newCommander = new Commander();
 
@@ -59,7 +60,7 @@ class CommanderController extends Controller {
         
     }
 
-    public function storeOnUpdateCommander (Commander $commander, Request $request) {
+    public function storeOnUpdateCommander (Commander $commander, UpdateCommanderRequest $request) {
 
         $commander->commander_name = $request->commander_name;
         $commander->description = $request->description;
@@ -71,7 +72,7 @@ class CommanderController extends Controller {
 
             $commander->save();
             
-            return redirect()->route('commanders.index')->with('success', 'Commander updated!');
+            return redirect()->route('commanders.index')->with('success', 'Commander updated');
 
         }
     

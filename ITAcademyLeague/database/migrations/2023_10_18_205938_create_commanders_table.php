@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->id('commander_ID');
             $table->string('commander_name')->unique();
-            $table->string('description')->unique();
+            $table->string('description');
             $table->unsignedInteger('mana')->default(300);
             $table->string('email')->unique();
             $table->unsignedInteger('duels_won')->default(0);

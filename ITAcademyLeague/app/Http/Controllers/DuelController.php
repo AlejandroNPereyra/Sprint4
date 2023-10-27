@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateDuelRequest;
+use App\Http\Requests\UpdateDuelRequest;
 use App\Models\Duel;
 use App\Models\Commander;
 use Faker\Factory;
@@ -69,7 +71,7 @@ class DuelController extends Controller {
 
     }
 
-    public function storeDuel (Request $request) {
+    public function storeDuel (CreateDuelRequest $request) {
 
         $newDuel = new Duel();
 
@@ -111,7 +113,7 @@ class DuelController extends Controller {
 
     }
 
-    public function storeOnUpdateDuel(Duel $duel, Request $request) {
+    public function storeOnUpdateDuel(Duel $duel, UpdateDuelRequest $request) {
 
         // Update the duel with the request data
         $duel->date = $request->date;

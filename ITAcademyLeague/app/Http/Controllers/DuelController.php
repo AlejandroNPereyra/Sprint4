@@ -113,7 +113,12 @@ class DuelController extends Controller {
 
     public function storeOnUpdateDuel(Duel $duel, UpdateDuelRequest $request) {
 
-        $duel->update($request->all());
+        $duel->date = $request->input('date');
+        $duel->celebrated_at = $request->input('celebrated_at');
+        $duel->winner_ID = $request->input('winner_commander');
+        $duel->loser_ID = $request->input('loser_commander');
+        $duel->winner_mana_used = $request->input('winner_mana_used');
+        $duel->loser_mana_used = $request->input('loser_mana_used');
         
         $duel->save();
     

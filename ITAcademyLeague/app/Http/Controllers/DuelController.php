@@ -10,6 +10,7 @@ use Faker\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Providers\FantasyPlaceProvider;
+use Illuminate\Support\Collection;
 
 
 class DuelController extends Controller {
@@ -53,19 +54,7 @@ class DuelController extends Controller {
 
     public function createDuel (Request $request) {
 
-        $faker = Factory::create();
-        $fantasyPlaceProvider = new FantasyPlaceProvider($faker);
-
-        // Create an array with all fantasy places
-
-        $fantasyPlaces = [];
-        for ($i = 0; $i < 35; $i++) { // You can change the number as needed
-
-            $fantasyPlaces[] = $fantasyPlaceProvider->fantasyPlace();
-
-        }
-
-        $commanders = Commander::all();
+        list($fantasyPlaces, $commanders) = $this->getFantasyPlacesAndCommanders();
 
         return view ('duelViews.createDuel', compact('fantasyPlaces', 'commanders'));
 
@@ -96,16 +85,7 @@ class DuelController extends Controller {
 
     public function updateDuel (Duel $duel) {
 
-        $faker = Factory::create();
-        $fantasyPlaceProvider = new FantasyPlaceProvider($faker);
-
-        $fantasyPlaces = [];
-
-        for ($i = 0; $i < 35; $i++) { 
-            $fantasyPlaces[] = $fantasyPlaceProvider->fantasyPlace();
-        }
-
-        $commanders = Commander::all();
+        list($fantasyPlaces, $commanders) = $this->getFantasyPlacesAndCommanders();
 
         return view ('duelViews.updateDuel', compact ('duel', 'fantasyPlaces', 'commanders'));
 
@@ -143,6 +123,33 @@ class DuelController extends Controller {
         }
 
         return redirect()->route('duels.index')->with('error', 'Duel not deleted');
+    }
+
+    private function getFantasyPlacesAndCommanders() {
+
+        $faker = Factory::create();
+        $fantasyPlaceProvider = new FantasyPlaceProvider($faker);
+    
+        $fantasyPlaces = [];
+    
+        for ($i = 0; $i < 35; $i++) {
+
+            $fantasyPlaces[] = $fantasyPlaceProvider->fantasyPlace();
+
+        }
+
+        $fantasyPlaces = Collection::make($fantasyPlaces)->sortBy(function ($place) {
+
+            return strtolower($place);
+
+        });
+    
+        $commanders = Commander::all();
+
+        $commanders = Collection::make($commanders)->sortBy('commander_name');
+    
+        return [$fantasyPlaces, $commanders];
+
     }
 
 }

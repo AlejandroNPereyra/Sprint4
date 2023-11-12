@@ -24,7 +24,7 @@
             <select id="celebrated_at" name="celebrated_at"
                 class="w-full px-4 py-2 rounded-lg bg-mtg-input border-2 border-mtg-border text-black focus:outline-none focus-border-mtg-highlight">
                 <option value="" disabled>Select a place</option>
-                @foreach ($fantasyPlaces as $place)
+                @foreach (collect($fantasyPlaces)->unique() as $place)
                     <option value="{{ $place }}"
                         {{ $place == old('celebrated_at', $duel->celebrated_at) ? 'selected' : '' }}>
                         {{ $place }}

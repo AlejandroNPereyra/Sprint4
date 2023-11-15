@@ -13,6 +13,6 @@ class CommanderSeeder extends Seeder
      */
     public function run(): void
     {
-        Commander::factory(60)->create();
+        Commander::factory(20)->create();
     }
 }

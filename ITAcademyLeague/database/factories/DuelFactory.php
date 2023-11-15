@@ -39,8 +39,8 @@ class DuelFactory extends Factory
 
             },
 
-            'winner_mana_used' => $this->faker->numberBetween(0, 1000),
-            'loser_mana_used' => $this->faker->numberBetween(0, 1000)
+            'winner_mana_used' => $this->faker->numberBetween(0, 100),
+            'loser_mana_used' => $this->faker->numberBetween(0, 100)
 
         ];
     }

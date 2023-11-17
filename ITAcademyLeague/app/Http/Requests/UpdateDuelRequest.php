@@ -37,10 +37,12 @@ class UpdateDuelRequest extends FormRequest
                 'max:100',
                 
                 function ($attribute, $value, $fail) {
+
                     $winner = Commander::find($this->input('winner_commander'));
                     if ($winner?->mana < $value) {
                         $fail('Selected Commander mana must be less than or equal to the available mana');
                     }
+
                 },             
 
             ],
@@ -51,12 +53,14 @@ class UpdateDuelRequest extends FormRequest
                'min:10',
                'max:100',
 
-               function ($attribute, $value, $fail) {
-                $loser = Commander::find($this->input('loser_commander'));
-                if ($loser?->mana < $value) {
-                    $fail('Selected Commander mana must be less than or equal to the available mana');
-                }
-            },  
+                function ($attribute, $value, $fail) {
+                    
+                    $loser = Commander::find($this->input('loser_commander'));
+                    if ($loser?->mana < $value) {
+                        $fail('Selected Commander mana must be less than or equal to the available mana');
+                    }
+
+                },  
 
             ],
 
@@ -65,11 +69,15 @@ class UpdateDuelRequest extends FormRequest
     }
 
     public function withValidator($validator) {
+
         $validator->after(function ($validator) {
-            if ($this->input('winner_mana_used') >= $this->input('loser_mana_used')) {
-                $validator->errors()->add('winner_mana_used', 'The winner cannot have used more or equal mana than the loser.');
+
+            if ($this->input('winner_mana_used') > $this->input('loser_mana_used')) {
+                $validator->errors()->add('winner_mana_used', 'The winner cannot have used more mana than the loser.');
             }
+
         });
+
     }
 
 }

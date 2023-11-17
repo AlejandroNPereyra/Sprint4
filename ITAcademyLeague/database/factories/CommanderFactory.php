@@ -22,7 +22,7 @@ class CommanderFactory extends Factory
 
             'commander_name' => $this->faker->name,
             'description' => $this->faker->text,
-            'mana' => $this->faker->numberBetween(10, 100),
+            'mana' => $this->faker->numberBetween(0, 100),
             'email' => $this->faker->unique()->safeEmail,
             'duels_won' => $this->faker->numberBetween(0, 100),
             'duels_lost' => $this->faker->numberBetween(0, 60)

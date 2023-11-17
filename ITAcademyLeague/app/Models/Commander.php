@@ -11,7 +11,7 @@ class Commander extends Model
     
     protected $primaryKey = 'commander_ID';
     
-    protected $fillable = ['commander_name', 'description', 'email'];
+    protected $fillable = ['commander_name', 'description', 'email', 'mana'];
 
     
 

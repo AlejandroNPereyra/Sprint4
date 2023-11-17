@@ -21,10 +21,9 @@ class UpdateDuelRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     
-     public function rules(): array {
-        
+    public function rules(): array
+    {
         return [
-
             'date' => 'required|date',
             'celebrated_at' => 'required',
             'winner_commander' => 'required|exists:commanders,commander_ID',
@@ -33,40 +32,33 @@ class UpdateDuelRequest extends FormRequest
             'winner_mana_used' => [
                 'required',
                 'integer',
-                'min:10',
+                'min:0',
                 'max:100',
-                
+
                 function ($attribute, $value, $fail) {
-
-                    $winner = Commander::find($this->input('winner_commander'));
-                    if ($winner?->mana < $value) {
-                        $fail('Selected Commander mana must be less than or equal to the available mana');
+                    $loserMana = $this->input('loser_mana_used');
+                    if ($value < $loserMana) {
+                        $fail('Winner mana used must be greater than or equal to the loser mana used.');
                     }
-
-                },             
-
+                },
             ],
 
             'loser_mana_used' => [
-               'required',
-               'integer',
-               'min:10',
-               'max:100',
+                'required',
+                'integer',
+                'min:0',
+                'max:100',
 
                 function ($attribute, $value, $fail) {
-                    
-                    $loser = Commander::find($this->input('loser_commander'));
-                    if ($loser?->mana < $value) {
-                        $fail('Selected Commander mana must be less than or equal to the available mana');
+                    $winnerMana = $this->input('winner_mana_used');
+                    if ($value > $winnerMana) {
+                        $fail('Loser mana used must be less than or equal to the winner mana used.');
                     }
-
-                },  
-
+                },
             ],
-
         ];
-
     }
+}
 
     public function withValidator($validator) {
 

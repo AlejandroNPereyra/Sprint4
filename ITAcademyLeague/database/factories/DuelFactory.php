@@ -29,10 +29,10 @@ class DuelFactory extends Factory
             'loser_ID' => function (array $attributes) {
                 return Commander::where('commander_ID', '!=', $attributes['winner_ID'])->inRandomOrder()->first()->commander_ID;
             },
-            'winner_mana_used' => $this->faker->numberBetween(10, 100),
+            'winner_mana_used' => $this->faker->numberBetween(0, 100),
             'loser_mana_used' => function (array $attributes) {
                 // Ensure loser's mana is always less than the winner's mana
-                return $this->faker->numberBetween(10, $attributes['winner_mana_used']);
+                return $this->faker->numberBetween(0, $attributes['winner_mana_used']);
             },
         ];
     }

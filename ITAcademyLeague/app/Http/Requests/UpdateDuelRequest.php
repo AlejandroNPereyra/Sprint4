@@ -59,17 +59,3 @@ class UpdateDuelRequest extends FormRequest
         ];
     }
 }
-
-    public function withValidator($validator) {
-
-        $validator->after(function ($validator) {
-
-            if ($this->input('winner_mana_used') > $this->input('loser_mana_used')) {
-                $validator->errors()->add('winner_mana_used', 'The winner cannot have used more mana than the loser.');
-            }
-
-        });
-
-    }
-
-}

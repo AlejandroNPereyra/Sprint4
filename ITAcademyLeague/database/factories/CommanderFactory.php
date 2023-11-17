@@ -25,7 +25,7 @@ class CommanderFactory extends Factory
             'mana' => $this->faker->numberBetween(10, 100),
             'email' => $this->faker->unique()->safeEmail,
             'duels_won' => $this->faker->numberBetween(0, 100),
-            'duels_lost' => $this->faker->numberBetween(0, 100)
+            'duels_lost' => $this->faker->numberBetween(0, 60)
 
         ];
     }

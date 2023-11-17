@@ -9,7 +9,6 @@ use App\Providers\FantasyPlaceProvider;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Duel>
  */
-
 class DuelFactory extends Factory
 {
     /**
@@ -17,38 +16,24 @@ class DuelFactory extends Factory
      *
      * @return array<string, mixed>
      */
-
     public function definition(): array
     {
         $this->faker->addProvider(new FantasyPlaceProvider($this->faker));
 
         return [
-
             'date' => $this->faker->dateTimeBetween('2023-01-01', 'now'),
             'celebrated_at' => $this->faker->fantasyPlace(),
-
             'winner_ID' => function () {
-
-                 return Commander::inRandomOrder()->first()->commander_ID;
+                return Commander::inRandomOrder()->first()->commander_ID;
             },
             'loser_ID' => function (array $attributes) {
-
-                // Ensure that loser_ID is not the same as winner_ID
                 return Commander::where('commander_ID', '!=', $attributes['winner_ID'])->inRandomOrder()->first()->commander_ID;
-
             },
-
-            'winner_mana_used' => function (array $attributes) {
-                $winner = Commander::find($attributes['winner_ID']);
-                return $this->faker->numberBetween(10, min(100, $winner->mana));
-            },
+            'winner_mana_used' => $this->faker->numberBetween(10, 100),
             'loser_mana_used' => function (array $attributes) {
-                $loser = Commander::find($attributes['loser_ID']);
-                return $this->faker->numberBetween($attributes['winner_mana_used'] + 1, min(100, $loser->mana));
+                // Ensure loser's mana is always less than the winner's mana
+                return $this->faker->numberBetween(10, $attributes['winner_mana_used']);
             },
-            
         ];
-
     }
-
 }

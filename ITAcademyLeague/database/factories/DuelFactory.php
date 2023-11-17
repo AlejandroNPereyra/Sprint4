@@ -31,7 +31,6 @@ class DuelFactory extends Factory
 
                  return Commander::inRandomOrder()->first()->commander_ID;
             },
-
             'loser_ID' => function (array $attributes) {
 
                 // Ensure that loser_ID is not the same as winner_ID
@@ -39,9 +38,17 @@ class DuelFactory extends Factory
 
             },
 
-            'winner_mana_used' => $this->faker->numberBetween(0, 100),
-            'loser_mana_used' => $this->faker->numberBetween(0, 100)
-
+            'winner_mana_used' => function (array $attributes) {
+                $winner = Commander::find($attributes['winner_ID']);
+                return $this->faker->numberBetween(10, min(100, $winner->mana));
+            },
+            'loser_mana_used' => function (array $attributes) {
+                $loser = Commander::find($attributes['loser_ID']);
+                return $this->faker->numberBetween($attributes['winner_mana_used'] + 1, min(100, $loser->mana));
+            },
+            
         ];
+
     }
+
 }

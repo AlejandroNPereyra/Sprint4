@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Commander extends Model
 {
+    use HasFactory;
+    
     protected $primaryKey = 'commander_ID';
     
-    protected $fillable = ['commander_name', 'description', 'email'];
+    protected $fillable = ['commander_name', 'description', 'email', 'mana'];
 
-    use HasFactory;
+    
 
 }

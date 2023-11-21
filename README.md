@@ -1,6 +1,6 @@
 # Sprint4
 
-S'implementarà una aplicació web per a la gestió d'una lliga de futbol, 
+S'implementarà una aplicació web per a la gestió d'una lliga, 
 per la qual cosa entitats esportives com escoles o clubs podran gestionar 
 de manera senzilla tots els seus equips i partits. 
 
